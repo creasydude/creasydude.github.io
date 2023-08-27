@@ -6,18 +6,19 @@
 <title>📜 My Portfolio 📜</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
 <style>
+  /* Common styles */
   body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     background-color: #ffffff;
   }
   .container {
     text-align: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
   }
   .avatar {
     width: 100px;
@@ -32,15 +33,36 @@
     object-fit: cover;
   }
   .portfolio {
+    position: relative;
     background-color: #f4f4f4;
-    padding: 20px;
     border-radius: 5px;
     text-align: left;
     margin-bottom: 20px;
+    overflow: auto;
+    padding: 10px; /* Add left and right padding */
   }
   .portfolio pre {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
+  }
+  .toggle-buttons {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: transparent;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+  }
+  .toggle-button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .toggle-button:hover {
+    text-decoration: underline;
   }
   .button {
     background-color: #007bff;
@@ -52,101 +74,191 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    display: block;
+    margin: 10px auto;
   }
   .button:hover {
     background-color: #0056b3;
   }
+  p {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+  /* Styles for larger devices */
+@media screen and (min-width: 768px) {
+  .portfolio {
+    max-height: none; /* Remove max-height on larger screens */
+  }
+}
+
+/* Styles for smaller devices */
+@media screen and (max-width: 767px) {
+  .portfolio {
+    max-height: none;
+    overflow: hidden; /* Hide overflow on small screens */
+    padding: 0; /* Remove padding on small screens */
+  }
+  #portfolio-content {
+    overflow: auto;
+  }
+}
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="avatar">
-    <img src="./pic.jpg" alt="Avatar">
+  <div class="container">
+    <div class="avatar">
+      <img src="./pic.jpg" alt="Avatar">
+    </div>
+    <div class="portfolio">
+      <div class="toggle-buttons">
+        <button class="toggle-button" id="english-button">English</button>
+        <button class="toggle-button" id="persian-button">فارسی</button>
+      </div>
+      <pre id="portfolio-content">
+  
+  {
+          "language": "English",
+          "name": "Mohammad Hosein Roustaie",
+          "location": "Tehran",
+          "title": "Backend Developer",
+          "contact phone": "+98 935 734 2145",
+          "contact email": "mohammadh_r79@yahoo.com",
+          "skills": {
+            "UX/UI": "Bad xD",
+            "Front-end": "ChatGPT Enjoyer xD"
+            "Python": "A little",
+            "SQL": "Fine",
+            "NOSQL": "Fine",
+            "Javascript": "I have the most experience in it",
+            "Typescript": "I'm trying",
+            "API Development": "I have the most experience in it",
+            "Node.js": "Is what I've been learning the most",
+            "Express.js": "The Node.js framework I've worked with the most",
+            "Git": "Fine",
+            "Docker": "Fine",
+            "Microservice Architecture": "Fine but learning more",
+            "Clean Code Architecture": "Trying"
+          },
+          "projects": "Yes, I have a lot of projects. Please check out my GitHub.",
+          "my Github": "<a href="https://github.com/creasydude/" download>github.com/creasydude</a>",
+          "my Linkedin": "<a href="https://www.linkedin.com/in/mohammad-hosein-roustaie-207032192/" download>linkedin.com/in/mohammad-hosein-roustaie</a>",
+          "education": [
+            {
+              "Degree": "Bachelor's Degree",
+              "University": "Payame-Nur (PNU)",
+              "Location": "Tehran",
+              "Field": "Computer Engineer Field"
+            }
+          ],
+          "summary": "Im Mohammad Hosein Roustaie , 
+        Computer Engineer Student In Tehran PNU University ,
+        Most of my studies in the field : API , Javascript, Typescript , Node.js. 
+        Please visit my Github."
+  }
+    
+      </pre>
+    </div>
+    <a class="button" href="./Resume.pdf" download>Download Formal PDF Resume</a>
+    <p>PORTFOLIO WITH ❤️ BY CREASY</p>
   </div>
-  <div class="portfolio">
-    <pre>
-{
-  "language": "English",
-  "name": "Mohammad Hosein Roustaie",
-  "location": "Tehran",
-  "title": "Backend Developer",
-  "contact phone": "+98 935 734 2145",
-  "contact email": "mohammadh_r79@yahoo.com",
-  "skills": {
-    "UX/UI": "Bad xD",
-    "Front-end": "ChatGPT Enjoyer xD"
-    "Python": "A little",
-    "SQL": "Fine",
-    "NOSQL": "Fine",
-    "Javascript": "I have the most experience in it",
-    "Typescript": "I'm trying",
-    "API Development": "I have the most experience in it",
-    "Node.js": "Is what I've been learning the most",
-    "Express.js": "The Node.js framework I've worked with the most",
-    "Git": "Fine",
-    "Docker": "Fine",
-    "Microservice Architecture": "Fine but learning more",
-    "Clean Code Architecture": "Trying"
-  },
-  "projects": "Yes, I have a lot of projects. Please check out my GitHub.",
-  "my Github": "<a href="https://github.com/creasydude/" download>github.com/creasydude</a>",
-  "my Linkedin": "<a href="https://www.linkedin.com/in/mohammad-hosein-roustaie-207032192/" download>linkedin.com/in/mohammad-hosein-roustaie</a>",
-  "education": [
+  
+  <script>
+    //JSON data and button event listeners here
+    const englishJson = `
     {
-      "Degree": "Bachelor's Degree",
-      "University": "Payame-Nur (PNU)",
-      "Location": "Tehran",
-      "Field": "Computer Engineer Field"
-    }
-  ],
-  "summary": "Im Mohammad Hosein Roustaie , 
-Computer Engineer Student In Tehran PNU University ,
-Most of my studies in the field : API , Javascript, Typescript , Node.js. 
-Please visit my Github."
-},
-{
-  "زبان": "فارسی",
-  "نام": "محمد حسین روستائی",
-  "مکان": "تهران",
-  "عنوان": "توسعه دهنده بک اند",
-  "شماره تلفن": "+98 935 734 2145",
-  "ایمیل": "mohammadh_r79@yahoo.com",
-  "مهارت ها": {
-    "UI/UX": "افتضاح",
-    "Front-end": "ChatGPT XD"
-    "Python": "یکمی",
-    "SQL": "خوب",
-    "NOSQL": "خوب",
-    "Javascript": "بیشترین تجربه من در این بخش است",
-    "Typescript": "خوب اما در حال یادگیری بیشتر",
-    "API Development": "بیشترین تجربه من در این بخش است",
-    "Node.js": "بیشترین یادگیری من در این بخش است",
-    "Express.js": "بیشترین فریم ورکی که استفاده میکنم این است",
-    "Git": "خوب",
-    "Docker": "خوب",
-    "Microservice Architecture": "خوب اما در حال یادگیری بیشتر",
-    "Clean Code Architecture": "درحال یادگیری بیشتر"
-  },
-  "پروژه ها": "برای دیدن پروژه ها لطفا به گیتهابم سر بزنید",
-  "گیت هاب من": "<a href="https://github.com/creasydude/" download>github.com/creasydude</a>",
-  "لینکدین من": "<a href="https://www.linkedin.com/in/mohammad-hosein-roustaie-207032192/" download>linkedin.com/in/mohammad-hosein-roustaie</a>",
-  "تحصیلات": [
+          "language": "English",
+          "name": "Mohammad Hosein Roustaie",
+          "location": "Tehran",
+          "title": "Backend Developer",
+          "contact phone": "+98 935 734 2145",
+          "contact email": "mohammadh_r79@yahoo.com",
+          "skills": {
+            "UX/UI": "Bad xD",
+            "Front-end": "ChatGPT Enjoyer xD"
+            "Python": "A little",
+            "SQL": "Fine",
+            "NOSQL": "Fine",
+            "Javascript": "I have the most experience in it",
+            "Typescript": "I'm trying",
+            "API Development": "I have the most experience in it",
+            "Node.js": "Is what I've been learning the most",
+            "Express.js": "The Node.js framework I've worked with the most",
+            "Git": "Fine",
+            "Docker": "Fine",
+            "Microservice Architecture": "Fine but learning more",
+            "Clean Code Architecture": "Trying"
+          },
+          "projects": "Yes, I have a lot of projects. Please check out my GitHub.",
+          "my Github": "<a href="https://github.com/creasydude/" download>github.com/creasydude</a>",
+          "my Linkedin": "<a href="https://www.linkedin.com/in/mohammad-hosein-roustaie-207032192/" download>linkedin.com/in/mohammad-hosein-roustaie</a>",
+          "education": [
+            {
+              "Degree": "Bachelor's Degree",
+              "University": "Payame-Nur (PNU)",
+              "Location": "Tehran",
+              "Field": "Computer Engineer Field"
+            }
+          ],
+          "summary": "Im Mohammad Hosein Roustaie , 
+        Computer Engineer Student In Tehran PNU University ,
+        Most of my studies in the field : API , Javascript, Typescript , Node.js. 
+        Please visit my Github."
+  }
+    `;
+  
+    const persianJson = `
     {
-      "مدرک": "لیسانس",
-      "دانشگاه": "پیام نور",
-      "مکان": "تهران",
-      "حوزه": "مهندسی کامپیوتر / گرایش نرم افزار"
-    }
-  ],
-  "خلاصه": "من محمد حسین روستائی هستم , 
-درحال تحصیل در دانشگاه پیام نور حوزه مهندسی کامپیوتر / گرایش نرم افزار ,
-بیشتر تحقیقاتم در حوزه : API , Javascript, Typescript , Node.js. 
-لطفا به گیت هاب من سر بزنید."
-}
-    </pre>
-  </div>
-  <a class="button" href="./Resume.pdf" download>Download Formal PDF Resume</a>
-  <p>PORTFOLIO WITH ❤️ BY CREASY</p>
-</div>
+          "زبان": "فارسی",
+          "نام": "محمد حسین روستائی",
+          "مکان": "تهران",
+          "عنوان": "توسعه دهنده بک اند",
+          "شماره تلفن": "+98 935 734 2145",
+          "ایمیل": "mohammadh_r79@yahoo.com",
+          "مهارت ها": {
+            "UI/UX": "افتضاح",
+            "Front-end": "ChatGPT XD"
+            "Python": "یکمی",
+            "SQL": "خوب",
+            "NOSQL": "خوب",
+            "Javascript": "بیشترین تجربه من در این بخش است",
+            "Typescript": "خوب اما در حال یادگیری بیشتر",
+            "API Development": "بیشترین تجربه من در این بخش است",
+            "Node.js": "بیشترین یادگیری من در این بخش است",
+            "Express.js": "بیشترین فریم ورکی که استفاده میکنم این است",
+            "Git": "خوب",
+            "Docker": "خوب",
+            "Microservice Architecture": "خوب اما در حال یادگیری بیشتر",
+            "Clean Code Architecture": "درحال یادگیری بیشتر"
+          },
+          "پروژه ها": "برای دیدن پروژه ها لطفا به گیتهابم سر بزنید",
+          "گیت هاب من": "<a href="https://github.com/creasydude/" download>github.com/creasydude</a>",
+          "لینکدین من": "<a href="https://www.linkedin.com/in/mohammad-hosein-roustaie-207032192/" download>linkedin.com/in/mohammad-hosein-roustaie</a>",
+          "تحصیلات": [
+            {
+              "مدرک": "لیسانس",
+              "دانشگاه": "پیام نور",
+              "مکان": "تهران",
+              "حوزه": "مهندسی کامپیوتر / گرایش نرم افزار"
+            }
+          ],
+          "خلاصه": "من محمد حسین روستائی هستم , 
+        درحال تحصیل در دانشگاه پیام نور حوزه مهندسی کامپیوتر / گرایش نرم افزار ,
+        بیشتر تحقیقاتم در حوزه : API , Javascript, Typescript , Node.js. 
+        لطفا به گیت هاب من سر بزنید."
+  }
+    `;
+  
+    const portfolioContent = document.getElementById('portfolio-content');
+    const englishButton = document.getElementById('english-button');
+    const persianButton = document.getElementById('persian-button');
+  
+    englishButton.addEventListener('click', () => {
+      portfolioContent.innerHTML = englishJson;
+    });
+  
+    persianButton.addEventListener('click', () => {
+      portfolioContent.innerHTML = persianJson;
+    });
+  </script>
 </body>
 </html>
